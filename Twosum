@@ -1,0 +1,36 @@
+**Two Sum** – [LeetCode #1](https://leetcode.com/problems/two-sum/)
+   → HashMap usage, complement pattern.
+-----------------------------------------------------------------------------
+JAVA
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0;i < nums.length;i++)
+        {
+            if(map.containsKey(target - nums[i]))
+            {
+                return new int[]{map.get(target - nums[i]), i};
+            }
+            else
+            {
+                map.put(nums[i], i);
+            }
+        }
+        return new int[]{-1, -1};
+    }
+}
+
+PYTHON
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        hashmap = {}
+        for i, num in enumerate(nums):
+            if target - num in hashmap:
+                return [hashmap[target - num], i]
+            else:
+                hashmap[num] = i
+        return [-1, -1]
+        
+      
