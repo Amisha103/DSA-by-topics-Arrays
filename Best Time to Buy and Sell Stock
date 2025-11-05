@@ -1,0 +1,43 @@
+**Best Time to Buy and Sell Stock** – [LeetCode #121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+   → Track minimum and maximize profit.
+
+JAVA-
+class Solution {
+    public int maxProfit(int[] arr) {
+    int min = Integer.MAX_VALUE;
+    int maxdiff = 0;
+   
+    for(int i = 0;i < arr.length;i++)
+    {
+        if(arr[i] < min)
+        {
+            min = arr[i];
+        }
+        if(min != arr[i])
+        {
+            if(arr[i] - min > maxdiff)
+            {
+                maxdiff = arr[i] - min;
+              
+            }
+        }
+    }
+    return maxdiff;
+    }
+}
+
+
+
+PYTHON-
+
+class Solution(object):
+    def maxProfit(self, prices):
+        min_price = float('inf')
+        max_diff = 0
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            
+            elif price - min_price > max_diff:
+                    max_diff = price - min_price
+        return max_diff
