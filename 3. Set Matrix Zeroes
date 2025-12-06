@@ -1,0 +1,93 @@
+73. Set Matrix Zeroes
+
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+You must do it in place.
+
+JAVA-
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+     int n = matrix.length;
+     int m = matrix[0].length;
+    boolean mat[][] = new boolean[n][m];
+     for(int i = 0;i < n;i++)
+     {
+        for(int j = 0;j < m;j++)
+        {
+            if(matrix[i][j] == 0)
+            {
+                convertToZero(matrix,mat,  i, j, n, m);
+            }
+        }
+     }  
+      for(int i = 0;i < n;i++)
+     {
+        for(int j = 0;j < m;j++)
+        {
+            if(mat[i][j])
+            {
+                matrix[i][j] = 0;
+            }
+
+        }}
+
+    }
+    public void convertToZero(int [][] matrix,boolean mat[][], int i, int j, int n, int m)
+    {
+    int k = 0;
+    int l = 0;
+    while(k < m)
+    {
+        if(matrix[i][k] == 0 || mat[i][k])
+        {
+            k++;
+            continue;
+        }
+        mat[i][k] = true;
+        k++;
+    }
+      while(l < n)
+    {
+        if(matrix[l][j] == 0 || mat[l][j])
+        {
+              l++;
+            continue;
+        }
+        mat[l][j] = true;
+        l++;
+    }
+    }
+}
+
+
+PYTHON-
+
+
+class Solution(object):
+    def setZeroes(self, matrix):
+        n = len(matrix)
+        m = len(matrix[0])
+        mat = [[False for _ in range(m)] for _ in range(n)]
+
+       
+        for i in range(n):
+            for j in range(m):
+                if matrix[i][j] == 0:
+                    self.convertToZero(mat, i, j, n, m)
+
+        
+        for i in range(n):
+            for j in range(m):
+                if mat[i][j]:
+                    matrix[i][j] = 0
+
+
+    def convertToZero(self, mat, i, j, n, m):
+       
+        for col in range(m):
+            mat[i][col] = True
+
+        
+        for row in range(n):
+            mat[row][j] = True
