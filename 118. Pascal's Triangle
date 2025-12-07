@@ -1,0 +1,49 @@
+118. Pascal's Triangle
+
+Given an integer numRows, return the first numRows of Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+JAVA:
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> list1 = new ArrayList<>();
+list1.add(1);
+ans.add(list1);
+        for(int i = 2;i <= numRows;i++)
+        {
+List<Integer> list = new ArrayList<>();
+list.add(1);
+List<Integer> dummy = ans.get(i - 2);
+for(int j = 1;j < i - 1;j++)
+{
+
+int num = dummy.get(j - 1) + dummy.get(j);
+list.add(num);
+}
+list.add(1);
+ans.add(list);
+
+        }
+        return ans;
+    }
+}
+
+PYTHON-
+class Solution(object):
+    def generate(self, numRows):
+        ans = [[1]]
+        for i in range(2, numRows + 1):
+            list = [1]
+            dummy = ans[i - 2]
+            for j in range(1, i - 1):
+                sum = dummy[j - 1] + dummy[j]
+                list.append(sum)
+            list.append(1)
+            ans.append(list)
+        
+        return ans
+            
+
+Python
